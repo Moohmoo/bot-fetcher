@@ -11,7 +11,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # ---------------------- Scrapers ---------------------- #
-def newspaper_scrapper(url: str) -> str:
+def newspaper_scraper(url: str) -> str:
     """
     Use Newspaper3k to extract text from the article.
     
@@ -34,7 +34,7 @@ def newspaper_scrapper(url: str) -> str:
         logger.warning(f"[Newspaper] Failed to fetch {url}: {e}")
         return "Error"
 
-def beautifulsoup_scrapper(html: str) -> str:
+def beautifulsoup_scraper(html: str) -> str:
     """
     Use BeautifulSoup to extract text from HTML content.
     
@@ -55,7 +55,7 @@ def beautifulsoup_scrapper(html: str) -> str:
         logger.warning(f"[BeautifulSoup] Parsing error: {e}")
         return "Error"
 
-def pdf_scrapper(pdf_bytes: bytes, url: str) -> str:
+def pdf_scraper(pdf_bytes: bytes, url: str) -> str:
     """
     Use PyMuPDF to extract text from PDF content.
     
@@ -98,20 +98,20 @@ def fetch_content(url: str) -> str:
     # Check if the content is a PDF
     content_type = response.headers.get("Content-Type", "")
     if "application/pdf" in content_type:
-        content = pdf_scrapper(response.content, url)
+        content = pdf_scraper(response.content, url)
         if content != "Error":
             logger.info(f"[SCRAPER] ✅ PDF extrait : {url}")
             return content
         raise Exception(f"[SCRAPER] ❌ Échec extraction PDF : {url}")
 
     # Check if is article
-    content = newspaper_scrapper(url)
+    content = newspaper_scraper(url)
     if content != "Error":
         logger.info(f"[SCRAPER] ✅ Newspaper3k utilisé pour {url}")
         return content
 
     # Fallback to BeautifulSoup
-    content = beautifulsoup_scrapper(response.text)
+    content = beautifulsoup_scraper(response.text)
     if content != "Error":
         logger.info(f"[SCRAPER] ✅ BeautifulSoup utilisé pour {url}")
         return content
