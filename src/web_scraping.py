@@ -93,30 +93,30 @@ def fetch_content(url: str) -> str:
         response = requests.get(url, timeout=15)
         response.raise_for_status()
     except Exception as e:
-        raise Exception(f"[SCRAPER] 🚫 Erreur HTTP pour {url}: {e}")
+        raise Exception(f"[SCRAPER] HTTP error for {url}: {e}")
 
     # Check if the content is a PDF
     content_type = response.headers.get("Content-Type", "")
     if "application/pdf" in content_type:
         content = pdf_scraper(response.content, url)
         if content != "Error":
-            logger.info(f"[SCRAPER] ✅ PDF extrait : {url}")
+            logger.info(f"[SCRAPER] PDF extracted successfully: {url}")
             return content
-        raise Exception(f"[SCRAPER] ❌ Échec extraction PDF : {url}")
+        raise Exception(f"[SCRAPER] Failed to extract PDF: {url}")
 
     # Check if is article
     content = newspaper_scraper(url)
     if content != "Error":
-        logger.info(f"[SCRAPER] ✅ Newspaper3k utilisé pour {url}")
+        logger.info(f"[SCRAPER] Newspaper3k used for {url}")
         return content
 
     # Fallback to BeautifulSoup
     content = beautifulsoup_scraper(response.text)
     if content != "Error":
-        logger.info(f"[SCRAPER] ✅ BeautifulSoup utilisé pour {url}")
+        logger.info(f"[SCRAPER] BeautifulSoup used for {url}")
         return content
 
-    raise Exception(f"[SCRAPER] ❌ Échec complet pour {url}")
+    raise Exception(f"[SCRAPER] Complete failure for {url}")
 
 
 # ---------------------- Test ---------------------- #
