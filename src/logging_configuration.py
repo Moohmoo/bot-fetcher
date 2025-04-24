@@ -9,6 +9,6 @@ def setup_logging(level=logging.INFO):
         level (int): The logging level to set for the root logger. Default is logging.INFO.
     """
     # Create a formatter with the desired format for log messages
-    log_formatter = logging.Formatter("[%(levelname)s] %(message)s")
+    _ = logging.Formatter("[%(levelname)s] %(message)s")
     # Create a handler for standard output (console)
     logging.basicConfig(level=level, format="[%(levelname)s] %(message)s", stream=sys.stdout)
