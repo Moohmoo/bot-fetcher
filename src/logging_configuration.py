@@ -1,3 +1,5 @@
+"""Setup logging configuration for the project."""
+
 import logging
 import sys 
 
