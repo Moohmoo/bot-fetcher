@@ -1,16 +1,25 @@
 """Setup logging configuration for the project."""
 
 import logging
-import sys 
+import sys
+
 
 def setup_logging(level=logging.INFO):
-    """Configures the root logger with a specific format and level.
-    
+    """Configures the root logger explicitly, removing existing handlers.
+
     Parameters:
     ----------
-        level (int): The logging level to set for the root logger. Default is logging.INFO.
+        level : int
+            The logging level to set for the root logger
+            (default is logging.INFO).
     """
-    # Create a formatter with the desired format for log messages
-    _ = logging.Formatter("[%(levelname)s] %(message)s")
-    # Create a handler for standard output (console)
-    logging.basicConfig(level=level, format="[%(levelname)s] %(message)s", stream=sys.stdout)
+    root_logger = logging.getLogger()
+    root_logger.setLevel(level)
+    # Delete existing handlers if any
+    if root_logger.hasHandlers():
+        root_logger.handlers.clear()
+    log_formatter = logging.Formatter("[%(levelname)s] %(message)s")
+    console_handler = logging.StreamHandler(sys.stdout)
+    console_handler.setLevel(level)
+    console_handler.setFormatter(log_formatter)
+    root_logger.addHandler(console_handler)
