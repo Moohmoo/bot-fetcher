@@ -1,9 +1,21 @@
+<div align="center">
+
 # Bot-Fetcher: Local RAG Q&A System
 
-[![Python Version](https://img.shields.io/badge/Python-3.13-blue.svg)](https://www.python.org/)
-<!-- Add other badges as needed, e.g., License -->
+*Your personal assistant for exploring and querying your information streams.*
 
-Bot-Fetcher is a Python-based system designed to answer questions based on content fetched from various web sources (RSS feeds, web pages, PDFs). It utilizes a Retrieval-Augmented Generation (RAG) pipeline powered by local Large Language Models (LLMs) and vector embeddings, ensuring data privacy and offline capability.
+<p>
+    <a href="https://github.com/Moohmoo/bot-fetcher/commits/main">
+        <img src="https://img.shields.io/github/last-commit/Moohmoo/bot-fetcher" alt="GitHub last commit"/>
+    </a>
+    <img src="https://img.shields.io/badge/Python-3.13-blue" alt="Python Version"/>
+    <img src="https://img.shields.io/badge/code%20style-black-000000.svg" alt="Code style: black"/>
+</p>
+
+</div>
+
+## Description 
+Bot-Fetcher is a Python-based system designed to answer questions based on content fetched from various web sources (RSS feeds, web pages, PDFs). It utilizes a Retrieval-Augmented Generation (RAG) pipeline powered by local Large Language Models (LLMs) and vector embeddings, offline capability.
 
 ## Features
 
@@ -103,3 +115,11 @@ The workflow generally involves adding RSS feeds, fetching items from them (whic
         ```bash
         python src/rag_query.py "What is the main topic discussed about OpenAI?"
         ```
+
+## TODO / Améliorations Possibles
+
+* Add unit and integration tests.
+* Improve error handling (scraping, LLM).
+* Develop a user interface (Streamlit, Gradio, Flask, etc.).
+* Optimize performance (GPU offloading, faster models).
+
