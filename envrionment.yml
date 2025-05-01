@@ -1,0 +1,26 @@
+name: bot-fetcher-env
+channels:
+    - conda-forge  # Recommended channel for many packages
+    - defaults
+dependencies:
+    # Python version
+    - python=3.13
+    # Core libraries
+    - requests
+    - beautifulsoup4  # For bs4
+    - newspaper3k  # For newspaper
+    - feedparser
+    - pymupdf  # For fitz
+    # LangChain components
+    - langchain-core  # Base for schema, etc.
+    - langchain-community  # For LlamaCppEmbeddings
+    - langchain-text-splitters
+    - langchain-chroma  # For the Chroma vector store
+    # Dependencies to install via pip
+    - pip
+    - pip:
+            - llama-cpp-python  # Often better via pip for correct CPU/GPU build
+    # Development tools (optional)
+    - pycodestyle  # Code style checker
+    - black  # Code formatter
+    - pydocstyle  # Documentation style checker
