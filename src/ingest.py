@@ -183,3 +183,7 @@ def run_pipeline():
         logger.info(
             f"Pipeline completed. Chroma DB saved at `{CHROMA_DB_PATH}`"
         )
+
+
+if __name__ == "__main__":
+    run_pipeline()
