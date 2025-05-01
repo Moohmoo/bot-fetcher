@@ -116,7 +116,7 @@ The workflow generally involves adding RSS feeds, fetching items from them (whic
         python src/rag_query.py "What is the main topic discussed about OpenAI?"
         ```
 
-## TODO / Améliorations Possibles
+## TODO / Future Work
 
 * Add unit and integration tests.
 * Improve error handling (scraping, LLM).
